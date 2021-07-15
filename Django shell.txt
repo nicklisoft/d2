@@ -1,0 +1,108 @@
+(venv) D:\DJ\prj>py manage.py makemigrations
+
+
+
+(venv) D:\DJ\prj>py manage.py migrate
+
+(venv) D:\DJ\prj>py manage.py shell
+
+
+
+
+
+
+from newapp.models import *
+
+user1 = User.objects.create(username='SA', first_name='FA')
+Author.objects.create(authorUser=user1)
+
+user2 = User.objects.create(username='Nik', first_name='Li')
+Author.objects.create(authorUser=user1)
+
+ Category.objects.create(name='IT')
+ Category.objects.create(name='ED')
+ Category.objects.create(name='EDuca2')
+
+Post.objects.create(author=Author.objects.get(authorUser=User.objects.get(username='SA')), categoryType='NW' , title='sm title', text='sm text' )
+Post.objects.create(author=Author.objects.get(authorUser=User.objects.get(username='SA')), categoryType='AR' , title='sm2 title', text='2sm text' )
+Post.objects.create(author=Author.objects.get(authorUser=User.objects.get(username='Nik')), categoryType='NW' , title='sm title', text='sm text' )
+
+
+p1 = Post.objects.get(pk=1)
+ p2 = Post.objects.get(pk=2)
+p3 = Post.objects.get(pk=3)
+
+
+
+
+
+c1 = Category.objects.get(name='IT')
+c2 = Category.objects.get(name='ED')
+
+
+
+
+
+p1.postCategory.add(c1)
+ p2.postCategory.add(c1,c2)
+p3.postCategory.add(c3)
+
+
+Comment.objects.create(commentUser=user1,commentPost=p1,text = 'Hello world')
+
+ Comment.objects.create(commentUser=User.objects.get(username='Nik'),commentPost=p1,text = 'Hello 2  world')
+
+
+
+
+>>> p1.like()
+>>> p1.like()
+>>> p1.like()
+>>> p1.like()
+>>> p1.like()
+>>> p1.like()
+>>> p1.like()
+>>> p1.like()
+>>> p1.like()
+>>> p1.like()
+>>> p1.like()
+>>> p1.like()
+
+>>> p2.like()
+>>> p2.like()
+>>> p2.like()
+>>> p2.like()
+>>> p2.like()
+>>> p2.like()
+>>> p2.like()
+>>> p2.like()
+>>> p2.like()
+>>> p2.like()
+>>> p2.like()
+>>> p2.dislike()
+>>> p2.dislike()
+
+
+
+Author.objects.get(authorUser=user1).update_rating()
+
+
+
+
+
+>>> Comment.objects.get(pk=1).like()
+>>> Comment.objects.get(pk=1).like()
+>>> Comment.objects.get(pk=1).like()
+>>> Comment.objects.get(pk=1).like()
+>>> Comment.objects.get(pk=1).like()
+>>> Comment.objects.get(pk=1).like()
+>>> Comment.objects.get(pk=2).like()
+>>> Comment.objects.get(pk=2).like()
+>>> Comment.objects.get(pk=2).like()
+>>> Comment.objects.get(pk=2).like()
+>>> Comment.objects.get(pk=2).like()
+>>>
+
+
+Author.objects.get(authorUser=user1).update_rating()
+
